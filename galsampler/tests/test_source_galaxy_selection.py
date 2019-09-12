@@ -1,9 +1,7 @@
 """
 """
-from __future__ import absolute_import, division, print_function, unicode_literals
-import pytest
 import numpy as np
-from halotools.utils import crossmatch
+from ..utils import crossmatch
 from ..source_galaxy_selection import source_galaxy_selection_indices
 from ..host_halo_binning import halo_bin_indices
 

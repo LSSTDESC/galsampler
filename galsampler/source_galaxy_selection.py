@@ -1,7 +1,7 @@
 """
 """
 import numpy as np
-from halotools.utils import crossmatch, compute_richness
+from .utils import crossmatch, compute_richness
 
 from .source_halo_selection import source_halo_index_selection
 from .cython_kernels.galaxy_selection_kernel import galaxy_selection_kernel

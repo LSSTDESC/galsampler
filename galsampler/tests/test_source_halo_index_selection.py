@@ -3,12 +3,7 @@
 import numpy as np
 import pytest
 
-try:
-    from halotools.utils import crossmatch
-    _NO_HALOTOOLS = False
-except:
-    _NO_HALOTOOLS = True
-
+from ..utils import crossmatch
 from ..source_halo_selection import source_halo_index_selection, get_source_bin_from_target_bin
 from ..host_halo_binning import halo_bin_indices
 
@@ -114,7 +109,6 @@ def test2_get_source_bin_from_target_bin():
     assert get_source_bin_from_target_bin(counts, 3, nhalo_min, bin_shapes) == 3
 
 
-@pytest.mark.skipif('_NO_HALOTOOLS')
 def test_bin_distribution_recovery():
 
     log_mhost_min, log_mhost_max, dlog_mhost = 10.5, 15.5, 0.5

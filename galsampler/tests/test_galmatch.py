@@ -1,6 +1,7 @@
 """Unit testing for the galmatch module."""
 import numpy as np
 from ..galmatch import compute_source_galaxy_selection_indices
+from ..galmatch import calculate_indx_correspondence
 
 
 def test_source_galaxy_selection_indices():
@@ -82,3 +83,21 @@ def test_source_galaxy_selection_indices():
     msk2 = ~msk1 & (target_galaxy_target_halo_ids < 2 * n_target_halos_per_group)
     dx2 = np.abs(target_gals_source_host_x[msk2] - x2)
     assert np.all(dx2 < 1)
+
+
+def test_calculate_indx_correspondence():
+    n_source, n_target_per_source = 10, 5
+    n_target = n_source * n_target_per_source
+    x_source = np.arange(n_source)
+
+    delta = 0.01
+    u_target = np.random.uniform(-delta, delta, n_target)
+    x_target = np.repeat(x_source, n_target_per_source) + u_target
+    source_props = (x_source,)
+    target_props = (x_target,)
+    dd_match, indx_match = calculate_indx_correspondence(source_props, target_props)
+    assert dd_match.shape == x_target.shape
+    assert dd_match.max() <= delta
+
+    x_match = x_source[indx_match]
+    assert np.allclose(x_target, x_match, atol=delta)

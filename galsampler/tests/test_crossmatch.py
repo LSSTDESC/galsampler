@@ -123,3 +123,14 @@ def test_error_handling5():
         crossmatch(x, y)
     substr = "Input array x must be a 1d sequence of integers"
     assert substr in err.value.args[0]
+
+
+def test_crossmatch_skip_bounds_checking():
+    """skip_bounds_checking should not change results."""
+    x = np.array([1, 3, 5])
+    y = np.array([5, 1])
+    x_idx, y_idx = crossmatch(x, y, skip_bounds_checking=True)
+    x_idx2, y_idx2 = crossmatch(x, y, skip_bounds_checking=False)
+
+    assert np.allclose(x_idx, x_idx2)
+    assert np.allclose(y_idx, y_idx2)

@@ -17,7 +17,7 @@ setup(
     author_email="ahearin@anl.gov",
     description="Tools for generating synthetic cosmological data",
     long_description="Tools for generating synthetic cosmological data",
-    install_requires=["numpy", "numba"],
+    install_requires=["numpy", "numba", "scipy"],
     packages=find_packages(),
     url="https://github.com/LSSTDESC/galsampler",
 )

@@ -34,3 +34,5 @@ nbsphinx_prompt_width = "0"  # no prompts in nbsphinx
 
 html_theme = "alabaster"
 html_static_path = []
+
+master_doc = "index"

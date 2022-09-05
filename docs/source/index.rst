@@ -23,3 +23,4 @@ in the Dark Energy Spectroscopic Instrument (`DESI <https://www.desi.lbl.gov/>`_
    :caption: Contents:
 
    Installation instructions <installation.rst>
+   Introduction <intro.rst>

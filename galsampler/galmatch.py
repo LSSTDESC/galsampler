@@ -1,4 +1,4 @@
-"""Module implementing the compute_source_galaxy_selection_indices function
+"""Module implementing the galsample function
 used for galsampling
 """
 import numpy as np
@@ -16,7 +16,7 @@ GalsamplerCorrespondence = namedtuple(
     ],
 )
 
-__all__ = ("compute_source_galaxy_selection_indices", "calculate_halo_correspondence")
+__all__ = ("galsample", "calculate_halo_correspondence")
 
 
 @njit
@@ -81,7 +81,7 @@ def calculate_halo_correspondence(source_halo_props, target_halo_props, n_thread
     return dd_match, indx_match
 
 
-def compute_source_galaxy_selection_indices(
+def galsample(
     source_galaxies_host_halo_id,
     source_halo_ids,
     target_halo_ids,
@@ -113,7 +113,7 @@ def compute_source_galaxy_selection_indices(
 
     Returns
     -------
-    selection_indices : ndarray of shape (n_target_gals, )
+    target_gals_selection_indx : ndarray of shape (n_target_gals, )
         Integer array storing values in the range [0, n_source_gals-1]
 
     target_galaxy_target_halo_ids : ndarray of shape (n_target_gals, )

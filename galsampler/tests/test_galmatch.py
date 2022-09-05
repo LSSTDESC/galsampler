@@ -1,6 +1,6 @@
 """Unit testing for the galmatch module."""
 import numpy as np
-from ..galmatch import compute_source_galaxy_selection_indices
+from ..galmatch import galsample
 from ..galmatch import calculate_indx_correspondence
 
 
@@ -58,7 +58,7 @@ def test_source_galaxy_selection_indices():
     target_halo_props = (target_halos_x,)
 
     source_galaxies_host_halo_id = np.repeat(source_halo_ids, source_halo_richness)
-    res = compute_source_galaxy_selection_indices(
+    res = galsample(
         source_galaxies_host_halo_id,
         source_halo_ids,
         target_halo_ids,

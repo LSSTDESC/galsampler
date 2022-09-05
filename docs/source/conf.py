@@ -20,10 +20,13 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
+    "nbsphinx",
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = [".ipynb_checkpoints/*"]
+
+nbsphinx_prompt_width = ""  # no prompts in nbsphinx
 
 
 # -- Options for HTML output -------------------------------------------------

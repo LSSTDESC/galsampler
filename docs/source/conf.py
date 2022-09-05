@@ -26,11 +26,11 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = [".ipynb_checkpoints/*"]
 
-nbsphinx_prompt_width = ""  # no prompts in nbsphinx
+nbsphinx_prompt_width = "0"  # no prompts in nbsphinx
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "alabaster"
-html_static_path = ["_static"]
+html_static_path = []

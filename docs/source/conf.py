@@ -28,6 +28,7 @@ exclude_patterns = [".ipynb_checkpoints/*"]
 
 nbsphinx_prompt_width = "0"  # no prompts in nbsphinx
 
+nbsphinx_kernel_name = "python3"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

@@ -7,4 +7,5 @@ python:
   version: 3
   install:
     - method: pip
+    - requirements: docs/requirements.txt
       path: .

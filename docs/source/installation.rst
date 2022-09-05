@@ -16,7 +16,8 @@ Installation
 
     conda install galsampler
 
-The package can be also installed by cloning the GitHub repository and running:
+The package can be also installed by cloning the
+`galsampler <https://github.com/LSSTDESC/galsampler/>`__ GitHub repository and running:
 
 .. code-block:: python
 

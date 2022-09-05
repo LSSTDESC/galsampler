@@ -1,0 +1,7 @@
+[run]
+source= galsampler/
+
+omit =
+    galsampler/__init__.py
+    galsampler/_version.py
+    galsampler/tests/*.py

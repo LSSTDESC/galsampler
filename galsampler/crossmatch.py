@@ -3,7 +3,7 @@
 import numpy as np
 
 
-__all__ = ('crossmatch', 'compute_richness')
+__all__ = ("crossmatch", "compute_richness")
 
 
 def crossmatch(x, y, skip_bounds_checking=False):
@@ -12,6 +12,8 @@ def crossmatch(x, y, skip_bounds_checking=False):
 
     The elements in x may be repeated, but the elements in y must be unique.
     The arrays x and y may be only partially overlapping.
+
+    Applications of this function involve cross-matching two catalogs which share an ID.
 
     Parameters
     ----------
@@ -34,17 +36,11 @@ def crossmatch(x, y, skip_bounds_checking=False):
     -------
     idx_x : integer array
         Integer array used to apply a mask to x
-        such that x[idx_x] == y[idx_y]
+        such that x[idx_x] = y[idx_y]
 
     y_idx : integer array
         Integer array used to apply a mask to y
-        such that x[idx_x] == y[idx_y]
-
-    Notes
-    -----
-    The matching between ``x`` and ``y`` is done on the sorted arrays.  A consequence of
-    this is that x[idx_x] and y[idx_y] will generally be a subset of ``x`` and ``y`` in
-    sorted order.
+        such that x[idx_x] = y[idx_y]
 
     """
     # Ensure inputs are Numpy arrays
@@ -58,15 +54,15 @@ def crossmatch(x, y, skip_bounds_checking=False):
         try:
             assert len(set(y)) == len(y)
             assert np.all(np.array(y, dtype=np.int64) == y)
-            assert np.shape(y) == (len(y), )
-        except:
-            msg = ("Input array y must be a 1d sequence of unique integers")
+            assert np.shape(y) == (len(y),)
+        except (AssertionError, ValueError, TypeError):
+            msg = "Input array y must be a 1d sequence of unique integers"
             raise ValueError(msg)
         try:
             assert np.all(np.array(x, dtype=np.int64) == x)
-            assert np.shape(x) == (len(x), )
-        except:
-            msg = ("Input array x must be a 1d sequence of integers")
+            assert np.shape(x) == (len(x),)
+        except (AssertionError, ValueError, TypeError):
+            msg = "Input array x must be a 1d sequence of integers"
             raise ValueError(msg)
 
     # Internally, we will work with sorted arrays, and then undo the sorting at the end
@@ -75,7 +71,8 @@ def crossmatch(x, y, skip_bounds_checking=False):
     x_sorted = np.copy(x[idx_x_sorted])
     y_sorted = np.copy(y[idx_y_sorted])
 
-    # x may have repeated entries, so find the unique values as well as their multiplicity
+    # x may have repeated entries
+    # Address by finding the unique values as well as their multiplicity
     unique_xvals, counts = np.unique(x_sorted, return_counts=True)
 
     # Determine which of the unique x values has a match in y
@@ -85,7 +82,9 @@ def crossmatch(x, y, skip_bounds_checking=False):
     idx_x = np.repeat(unique_xval_has_match, counts)
 
     # For each unique value of x with a match in y, identify the index of the match
-    matching_indices_in_y = np.searchsorted(y_sorted, unique_xvals[unique_xval_has_match])
+    matching_indices_in_y = np.searchsorted(
+        y_sorted, unique_xvals[unique_xval_has_match]
+    )
 
     # Repeat each matching index according to the multiplicity in x
     idx_y = np.repeat(matching_indices_in_y, counts[unique_xval_has_match])
@@ -95,7 +94,7 @@ def crossmatch(x, y, skip_bounds_checking=False):
 
 
 def compute_richness(unique_halo_ids, halo_id_of_galaxies):
-    """ For every ID in unique_halo_ids,
+    r"""For every ID in unique_halo_ids,
     calculate the number of times the ID appears in halo_id_of_galaxies.
 
     Parameters
@@ -104,13 +103,20 @@ def compute_richness(unique_halo_ids, halo_id_of_galaxies):
         Numpy array of shape (num_halos, ) storing unique integers
 
     halo_id_of_galaxies : ndarray
-        Numpy integer array of shape (num_halos, ) storing the host ID of each galaxy
+        Numpy integer array of shape (num_galaxies, ) storing the host ID of each galaxy
 
     Returns
     -------
     richness : ndarray
-        Numpy integer array of shape (num_halos, ) storing halo richness
+        Numpy integer array of shape (num_halos, ) storing richness of each host halo
 
+    Examples
+    --------
+    >>> num_hosts = 100
+    >>> num_sats = int(1e5)
+    >>> unique_halo_ids = np.arange(5, num_hosts + 5)
+    >>> halo_id_of_galaxies = np.random.randint(0, 5000, num_sats)
+    >>> richness = compute_richness(unique_halo_ids, halo_id_of_galaxies)
     """
     unique_halo_ids = np.atleast_1d(unique_halo_ids).astype(int)
     halo_id_of_galaxies = np.atleast_1d(halo_id_of_galaxies).astype(int)

@@ -1,4 +1,0 @@
-include README.md
-include LICENSE
-recursive-include galsampler *.pyx *.pxd *.c *.cpp *.h
-global-exclude *.pyc *.o

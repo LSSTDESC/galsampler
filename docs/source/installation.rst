@@ -14,7 +14,7 @@ Installation
 
 .. code-block:: python
 
-    conda install galsampler
+    conda install lsstdesc-galsampler
 
 The package can be also installed by cloning the
 `galsampler <https://github.com/LSSTDESC/galsampler/>`__ GitHub repository and running:

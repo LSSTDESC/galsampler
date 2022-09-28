@@ -15,6 +15,12 @@ $ cd /path/to/root/galsampler
 $ pip install .
 ```
 
+However you install the code, to use it from a python interpreter:
+
+```
+>>> import galsampler
+```
+
 ## Documentation
 See https://galsampler.readthedocs.io/en/latest for complete documentation and usage tutorials.
 

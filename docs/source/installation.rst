@@ -22,3 +22,10 @@ The package can be also installed by cloning the
 .. code-block:: python
 
     pip install .
+
+
+However you install the code, to use it from a python interpreter:
+
+    .. code-block:: python
+
+        >>> import galsampler

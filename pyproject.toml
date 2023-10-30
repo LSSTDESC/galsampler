@@ -1,0 +1,51 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+    "setuptools_scm>=7", 
+    "tomli>=1.0.0; python_version < '3.11'",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "galsampler/_version.py"
+write_to_template = "__version__ = '{version}'\n"
+
+[tool.setuptools]
+include-package-data = true
+packages = {find = {exclude=["tests*", "docs*"]}}
+package-data = {galsampler = ["tests/*.txt"]}
+package-dir = {galsampler = "galsampler"}
+
+[project.urls]
+home = "https://github.com/LSSTDESC/galsampler"
+
+[project]
+name = "galsampler"
+authors = [
+    {name = "Andrew Hearin", email = "ahearin@anl.gov"},
+]
+description = "Galsampler algorithms used for generating synthetic cosmological data"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE.rst"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version", "dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+ignore = ["E231", "E241", "E501", "W503"]
+per-file-ignores = [
+    "__init__.py:F401",
+]
+max-line-length = 88
+count = true

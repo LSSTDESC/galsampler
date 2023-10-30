@@ -53,3 +53,27 @@ jobs:
         shell: bash -l {0}
         run: |
           pytest -vvs galsampler
+
+      - name: test versions
+        shell: bash -el {0}
+        run: |
+          pip uninstall galsampler --yes
+          [[ $(python setup.py --version) != "0.0.0" ]] || exit 1
+
+          rm -rf dist/*
+          python setup.py sdist
+          pip install --no-deps --no-build-isolation dist/*.tar.gz
+          pushd ..
+          python -c "import galsampler; assert galsampler.__version__ != '0.0.0'"
+          popd
+          pip uninstall galsampler --yes
+
+          rm -rf dist/*
+          python -m build --sdist . --outdir dist
+          pip install --no-deps --no-build-isolation dist/*.tar.gz
+          pushd ..
+          python -c "import galsampler; assert galsampler.__version__ != '0.0.0'"
+          popd
+          pip uninstall galsampler --yes
+
+          python -m pip install -v --no-deps --no-build-isolation -e .

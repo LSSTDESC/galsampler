@@ -1,15 +1,19 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
+"""
+from pkg_resources import DistributionNotFound, get_distribution
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+try:
+    __version__ = get_distribution("galsampler").version
+except DistributionNotFound:
+    __version__ = "unknown version"
 
 project = "galsampler"
 copyright = "2022, Andrew Hearin"
 author = "Andrew Hearin"
-release = "0.1"
+version = __version__
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -20,6 +24,7 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
+    "sphinx_copybutton",
     "nbsphinx",
 ]
 

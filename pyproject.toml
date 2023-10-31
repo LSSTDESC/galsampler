@@ -25,7 +25,7 @@ authors = [
     {name = "Andrew Hearin", email = "ahearin@anl.gov"},
 ]
 description = "Galsampler algorithms used for generating synthetic cosmological data"
-readme = "README.md"
+readme = "README.rst"
 requires-python = ">=3.8"
 license = {file = "LICENSE.rst"}
 classifiers = [

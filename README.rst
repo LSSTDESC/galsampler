@@ -5,9 +5,14 @@ Tools for generating synthetic cosmological data.
 
 Installation
 ============
-The latest release of galsampler, v0.1.0, can be installed with conda-forge::
+The latest release of galsampler, v0.1.0, can be installed with pip::
 
-      $ conda install lsstdesc-galsampler
+      $ pip install galsampler
+
+Or with conda-forge::
+
+      $ conda install -c conda-forge galsampler
+
 
 To install galsampler into your environment from the source code::
 
@@ -22,6 +27,7 @@ However you install the code, to use it from a python interpreter::
 Documentation
 =============
 See https://galsampler.readthedocs.io/en/latest for complete documentation and usage tutorials.
+
 
 Citation information
 ====================
